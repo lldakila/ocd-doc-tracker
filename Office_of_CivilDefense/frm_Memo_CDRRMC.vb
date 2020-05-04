@@ -1,4 +1,6 @@
 ﻿Imports System.Drawing.Printing
+Imports System.Data.SqlClient
+Imports MySql.Data.MySqlClient
 Public Class frm_Memo_CDRRMC
 
     Dim ResizedImage As Image
@@ -14,14 +16,16 @@ Public Class frm_Memo_CDRRMC
     End Sub
 
     Private Sub frm_Memo_CDRRMC_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        ramcon()
     End Sub
 
     Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
-        e.Graphics.DrawImage(pb_1.Image, 0, 0)
+        'e.Graphics.DrawImage(pb_1.Image, 0, 0)
+
     End Sub
 
     Private Sub btn_Print_Click(sender As Object, e As EventArgs) Handles btn_Print.Click
+        PrintPreviewDialog1 = New PrintPreviewDialog()
         PrintPreviewDialog1.Document = PrintDocument1
         PrintPreviewDialog1.ShowDialog()
     End Sub
@@ -48,5 +52,11 @@ Public Class frm_Memo_CDRRMC
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         frm_admin_main.Show()
         Me.Hide()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        'If TextBox2.Text.Length <> 0 Then
+        '    TextBox2.SelectAll()
+        'End If
     End Sub
 End Class

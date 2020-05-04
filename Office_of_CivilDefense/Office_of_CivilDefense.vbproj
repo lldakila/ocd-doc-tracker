@@ -11,8 +11,9 @@
     <AssemblyName>Office_of_CivilDefense</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,6 +47,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
@@ -58,6 +62,14 @@
     <Reference Include="DevExpress.Utils.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="KeepAutomation.Barcode.Windows">
+      <HintPath>..\..\..\..\..\Downloads\KA.Barcode.for.NETSuite\DLL\Net40\KeepAutomation.Barcode.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="Neodynamic.SDK.ThermalLabel, Version=8.0.0.0, Culture=neutral, PublicKeyToken=0630b9b3415848af, processorArchitecture=MSIL" />
+    <Reference Include="Neodynamic.SDK.ThermalLabel.WindowsPrinting, Version=8.0.0.0, Culture=neutral, PublicKeyToken=0630b9b3415848af, processorArchitecture=MSIL" />
+    <Reference Include="Neodynamic.Windows.ThermalLabelEditor, Version=8.0.0.0, Culture=neutral, PublicKeyToken=c57773567150e634, processorArchitecture=MSIL" />
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -87,6 +99,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Barcode.Designer.vb">
+      <DependentUpon>Barcode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Barcode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="barcode_mod.vb" />
     <Compile Include="EAN13_mode.vb" />
     <Compile Include="frmIncomingRGLnPRV.Designer.vb">
@@ -99,6 +117,12 @@
       <DependentUpon>frm_Admin.vb</DependentUpon>
     </Compile>
     <Compile Include="frm_Admin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_DocuInfo.Designer.vb">
+      <DependentUpon>frm_DocuInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_DocuInfo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_Incoming_Central.Designer.vb">
@@ -119,6 +143,12 @@
     <Compile Include="frm_Memo_CDRRMC.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_user_account.Designer.vb">
+      <DependentUpon>frm_user_account.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_user_account.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -134,13 +164,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="sqlControl.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Barcode.resx">
+      <DependentUpon>Barcode.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmIncomingRGLnPRV.resx">
       <DependentUpon>frmIncomingRGLnPRV.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Admin.resx">
       <DependentUpon>frm_Admin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_DocuInfo.resx">
+      <DependentUpon>frm_DocuInfo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Incoming_Central.resx">
       <DependentUpon>frm_Incoming_Central.vb</DependentUpon>
@@ -151,6 +188,9 @@
     <EmbeddedResource Include="frm_Memo_CDRRMC.resx">
       <DependentUpon>frm_Memo_CDRRMC.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_user_account.resx">
+      <DependentUpon>frm_user_account.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -159,6 +199,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
